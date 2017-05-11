@@ -24,6 +24,7 @@ public class Flight implements Comparable<Flight>, Comparator<Flight> {
         }
     };
 
+
     // Constructores
 
 
@@ -36,6 +37,9 @@ public class Flight implements Comparable<Flight>, Comparator<Flight> {
         this.setSpeed( speed );
         this.setDistanceToUs( distanceToUs );
         this.setControlDateTime( controlDateTime );
+    }
+
+    public Flight(String codigoVuelo) {
     }
 
 
@@ -123,6 +127,19 @@ public class Flight implements Comparable<Flight>, Comparator<Flight> {
 //        return (int)(f1.getSpeed() - f2.getSpeed());
         return Double.compare(f1.getSpeed(), f2.getSpeed());
     }
+
+    public static Comparator<Flight> comparadorPorCodigoVuelo = new Comparator<Flight>() {
+        @Override
+        public int compare(Flight f1, Flight f2) {
+            int res;
+
+            res = f1.getFlightCode().compareToIgnoreCase(f2.getFlightCode());
+            if(res != 0){
+                return res;
+            }
+            return f1.getFlightCode().compareToIgnoreCase(f2.getFlightCode());
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
